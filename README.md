@@ -1,2 +1,2 @@
 # bor
-Pet project aka bash.org.ru for teaching Django
+Pet project aka bash.org.ru for learning Django
