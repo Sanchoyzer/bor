@@ -1,0 +1,19 @@
+﻿{% extends "base_generic.html" %}
+
+{% block static %}
+<link rel="stylesheet" href="/static/css/jumbotron-narrow.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Id:</strong> {{ quote.id }}</li>
+    <li class="list-group-item"><strong>Дата:</strong> {{ quote.date }} </li>
+    <li class="list-group-item"><strong>Текст:</strong> {{ quote.text }} </li>
+  </ul>
+
+  <ul class="pager">
+    <li class="previous"><a href="{% url 'quotes-all' %}">&larr; Назад</a></li>
+  </ul>
+
+{% endblock %}

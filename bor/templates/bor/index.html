@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Цитатник</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h3>Цитатник</h3>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item">
+      <strong><a href="{% url 'quotes-all' %}">Всего</a><span class="badge">{{ count_quotes_all }}</span></strong>
+    </li>
+    <li class="list-group-item">
+      <strong>Новых<span class="badge">{{ count_quotes_new }}</span></strong>
+    </li>
+  </ul>
+</div>
+{% endblock %}

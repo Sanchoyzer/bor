@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+
+{% block static %}
+<link rel="stylesheet" href="/static/css/jumbotron-narrow.css">
+<link rel="shortcut icon" type="image/png" href="/static/favicon.ico"/>
+{% endblock %}
+
+{% block title %}
+<title>Цитатник</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h3>Цитатник</h3>
+  </div>
+
+  <div class="row">
+    <p>
+      <strong>Цитаты:</strong>
+      <a href="#" class="btn btn-link btn-sm" role="button">Новые <span class="badge">{{ count_quotes_new }}</span></a>
+      <a href="#" class="btn btn-link btn-sm" role="button">Случайные</a>
+      <a href="#" class="btn btn-link btn-sm" role="button">По рейтингу</a>
+      <a href="#" class="btn btn-link btn-sm" role="button">Бездна <span class="badge">0</span></a>
+      <a href="#" class="btn btn-link btn-sm" role="button">Топ бездны</a>
+      <a href="#" class="btn btn-link btn-sm" role="button">Добавить</a>
+    </p>
+
+    <p>
+      <strong>Смотреть:</strong>
+      <a href="{% url 'quotes-all' %}" class="btn btn-link btn-sm" role="button">Все цитаты <span class="badge">{{ count_quotes_all }}</span></a>
+      <a href="#" class="btn btn-link btn-sm" role="button">Только без минусов <span class="badge">0</span></a>
+    </p>
+  </div>
+
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Текст или номер цитаты" aria-describedby="sizing-addon2">
+    <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
+  </div>
+
+</div>
+{% endblock %}

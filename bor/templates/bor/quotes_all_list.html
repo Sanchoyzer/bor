@@ -1,0 +1,27 @@
+﻿{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h3>Все цитаты</h3>
+  </div>
+
+  {% if quotes %}
+    <ul class="list-group">
+      {% for quote in quotes %}
+        <li class="list-group-item">
+          <a href="{{ quote.get_absolute_url }}">{{ quote }}</a>
+
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h5 class="mt-5">Нет цитат :(</h5>
+  {% endif %}
+
+  <ul class="pager">
+    <li class="previous"><a href="{% url 'bor-index' %}">&larr; Назад</a></li>
+  </ul>
+
+</div>
+{% endblock %}
