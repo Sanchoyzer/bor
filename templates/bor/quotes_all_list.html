@@ -1,31 +1,39 @@
-﻿{% extends "base_generic.html" %}
+﻿{% extends "bor/page_with_header.html" %}
 
-{% block static %}
-<link rel="stylesheet" href="/static/css/jumbotron-narrow.css">
+{% block title %}
+<title>Все цитаты</title>
 {% endblock %}
 
-{% block content %}
-<div class="container">
-  <div class="page-header">
-    <h3>Все цитаты</h3>
-  </div>
-
-  {% if quotes %}
+{% block inner_content %}
     <ul class="list-group">
       {% for quote in quotes %}
+          <div class="row">
+            <div class="col-md-2">
+              <p class="text-center">
+                <a href="{% url 'quote-rulez' quote.id %}" class="btn btn-link btn-xs" role="button">+</a>
+                {{ quote.rating }}
+                <a href="{% url 'quote-sux' quote.id %}" class="btn btn-link btn-xs" role="button">-</a>
+              </p>
+            </div>
+            <div class="col-md-1">
+              <p class="text-center">
+                <a href="{% url 'quote-bayan' quote.id %}" class="btn btn-link btn-xs" role="button">[:||||:]</a>
+              </p>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-4"><p class="muted">{{ quote.date }}</p></div>
+            <div class="col-md-2"><p class="text-right"><a href="{{ quote.get_absolute_url }}">{{ quote }}</a></p></div>
+          </div>
+
+          <div class="well well-sm">
+            {{ quote.text }}
+          </div>
+
+        <!--
         <li class="list-group-item">
           <a href="{{ quote.get_absolute_url }}">{{ quote }}</a>
-
         </li>
+        -->
       {% endfor %}
     </ul>
-  {% else %}
-    <h5 class="mt-5">Нет цитат :(</h5>
-  {% endif %}
-
-  <ul class="pager">
-    <li class="previous"><a href="{% url 'bor-index' %}">&larr; Назад</a></li>
-  </ul>
-
-</div>
 {% endblock %}

@@ -35,6 +35,10 @@ def quote_sux(request, pk):
     return change_rating(request, pk, -1)
 
 
+def quote_bayan(request, pk):
+    pass
+
+
 class QuoteDetailView(generic.DetailView):
     model = Quote
     context_object_name = 'quote'

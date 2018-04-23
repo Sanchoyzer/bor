@@ -11,6 +11,7 @@ class Quote(models.Model):
     author = models.CharField(verbose_name="Автор", max_length=64, help_text="Введите автора цитаты", blank=True)
     isApproved = models.BooleanField(verbose_name="Утверждена?", default=False)
     isHided = models.BooleanField(verbose_name="Скрыта?", default=False)
+    copyPasteRating = models.IntegerField(verbose_name="Рейтинг баянистости", default=0)
 
     def __str__(self):
         return "#" + str(self.id)
@@ -36,5 +37,4 @@ class Comment(models.Model):
 
     class Meta:
         order_with_respect_to = "quote"
-
 
