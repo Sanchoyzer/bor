@@ -5,25 +5,5 @@
 {% endblock %}
 
 {% block inner_content %}
-  <div class="row">
-    <div class="col-md-2">
-      <p class="text-center">
-        <a href="{% url 'quote-rulez' quote.id %}" class="btn btn-link btn-xs" role="button">+</a>
-        {{ quote.rating }}
-        <a href="{% url 'quote-sux' quote.id %}" class="btn btn-link btn-xs" role="button">-</a>
-      </p>
-    </div>
-    <div class="col-md-1">
-      <p class="text-center">
-        <a href="{% url 'quote-bayan' quote.id %}" class="btn btn-link btn-xs" role="button">[:||||:]</a>
-      </p>
-    </div>
-    <div class="col-md-3"></div>
-    <div class="col-md-4"><p class="muted">{{ quote.date }}</p></div>
-    <div class="col-md-2"><p class="text-right"><a href="{% url 'quote-detail' quote.id %}">{{ quote }}</a></p></div>
-  </div>
-
-  <div class="well well-sm">
-    {{ quote.text }}
-  </div>
+  {% include "bor/quote_block.html" %}
 {% endblock %}
