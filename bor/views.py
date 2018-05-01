@@ -50,6 +50,7 @@ class QuotesAllListView(generic.ListView):
     queryset = Quote.objects.order_by('id')
     context_object_name = 'quotes'
     template_name = 'bor/quotes_all_list.html'
+    paginate_by = 2
 
 
 class CommentDetailView(generic.DetailView):

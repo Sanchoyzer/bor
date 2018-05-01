@@ -5,9 +5,13 @@
 {% endblock %}
 
 {% block inner_content %}
+  {% include "bor/pager_block.html" %}
+
     <ul class="list-group">
       {% for quote in quotes %}
           {% include "bor/quote_block.html" %}
       {% endfor %}
     </ul>
+
+  {% include "bor/pager_block.html" %}
 {% endblock %}
