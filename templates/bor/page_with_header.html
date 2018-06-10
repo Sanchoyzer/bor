@@ -25,7 +25,7 @@
     <p>
       <strong>Смотреть:</strong>
       <a href="{% url 'quotes-all' %}" class="btn btn-link btn-sm" role="button">Все цитаты <span class="badge">{{ count_quotes_all }}</span></a>
-      <a href="#" class="btn btn-link btn-sm" role="button">Только без минусов <span class="badge">0</span></a>
+      <a href="{% url 'quotes-hide-bad' %}" class="btn btn-link btn-sm" role="button">Только без минусов <span class="badge">{{ count_quotes_hide_bad }}</span></a>
     </p>
   </div>
 

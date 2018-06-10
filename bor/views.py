@@ -9,14 +9,16 @@ from .models import Quote, Comment
 
 
 def index(request):
-    count_quotes_all = Quote.objects.all().count()
     today_min = datetime.combine(datetime.today(), datetime.min.time())
     today_max = datetime.combine(datetime.today(), datetime.max.time())
-    count_quotes_new = Quote.objects.filter(date__range=(today_min, today_max)).count()
     return render(
         request,
         'bor/index.html',
-        context={'count_quotes_all': count_quotes_all, 'count_quotes_new': count_quotes_new},
+        context = {
+            'count_quotes_all': Quote.objects.all().count(),
+            'count_quotes_new': Quote.objects.filter(date__range=(today_min, today_max)).count(),
+            'count_quotes_hide_bad': Quote.objects.filter(rating__gte=0).count()
+        },
     )
 
 
@@ -36,7 +38,10 @@ def quote_sux(request, pk):
 
 
 def quote_bayan(request, pk):
-    pass
+    quote = get_object_or_404(Quote, pk=pk)
+    quote.copyPasteRating += 1
+    quote.save()
+    return redirect('quotes-all')
 
 
 class QuoteDetailView(generic.DetailView):
@@ -51,6 +56,10 @@ class QuotesAllListView(generic.ListView):
     context_object_name = 'quotes'
     template_name = 'bor/quotes_all_list.html'
     paginate_by = 2
+
+
+class QuotesHideBadListView(QuotesAllListView):
+    queryset = Quote.objects.filter(rating__gte=0).order_by('id')
 
 
 class CommentDetailView(generic.DetailView):
