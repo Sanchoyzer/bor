@@ -60,6 +60,14 @@ class QuotesAllListView(generic.ListView):
 
 class QuotesHideBadListView(QuotesAllListView):
     queryset = Quote.objects.filter(rating__gte=0).order_by('id')
+    template_name = 'bor/quotes_hide_bad_list.html'
+
+
+class QuotesRandomListView(generic.ListView):
+    model = Quote
+    queryset = Quote.objects.order_by('?')[:5]
+    context_object_name = 'quotes'
+    template_name = 'bor/quotes_random_list.html'
 
 
 class CommentDetailView(generic.DetailView):
