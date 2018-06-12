@@ -5,12 +5,11 @@
 {% endblock %}
 
 {% block inner_content %}
-
-    <ul class="list-group">
-      {% for quote in quotes %}
-          {% include "bor/quote_block.html" %}
-      {% endfor %}
-    </ul>
+  <ul class="list-group">
+    {% for quote in quotes %}
+        {% include "bor/quote_block.html" %}
+    {% endfor %}
+  </ul>
 
   <p>
     <div class="row">
