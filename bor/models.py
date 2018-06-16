@@ -7,10 +7,10 @@ from django.utils import timezone
 class Quote(models.Model):
     text = models.TextField(verbose_name="Текст", max_length=1024, help_text="Введите текст цитаты")
     date = models.DateTimeField(verbose_name="Дата", db_index=True, default=timezone.now)
-    rating = models.IntegerField(verbose_name="Рейтинг", default=0)
+    rating = models.IntegerField(verbose_name="Рейтинг", db_index=True, default=0)
     author = models.CharField(verbose_name="Автор", max_length=64, help_text="Введите автора цитаты", blank=True)
-    isApproved = models.BooleanField(verbose_name="Утверждена?", default=False)
-    isHided = models.BooleanField(verbose_name="Скрыта?", default=False)
+    isApproved = models.BooleanField(verbose_name="Утверждена?", db_index=True, default=False)
+    isHided = models.BooleanField(verbose_name="Скрыта?", db_index=True, default=False)
     copyPasteRating = models.IntegerField(verbose_name="Рейтинг баянистости", default=0)
 
     def __str__(self):

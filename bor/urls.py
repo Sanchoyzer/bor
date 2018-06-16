@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^random/$',   views.QuotesRandomListView.as_view(),   name='quotes-random'),
     url(r'^new/$',      views.QuotesNewListView.as_view(),      name='quotes-new'),
     url(r'^byrating/$', views.QuotesByRatingListView.as_view(), name='quotes-by-rating'),
+    url(r'^abyss/$',    views.QuotesAbyssListView.as_view(),    name='quotes-abyss'),
 
     url(r'^quote/(?P<pk>\d+)$',        views.QuoteDetailView.as_view(), name='quote-detail'),
     url(r'^quote/(?P<pk>\d+)/rulez/$', views.quote_rulez,               name='quote-rulez'),

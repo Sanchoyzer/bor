@@ -56,31 +56,36 @@ class QuotesBaseListView(generic.ListView):
 
 
 class QuotesAllListView(QuotesBaseListView):
-    queryset = Quote.objects.order_by('id')
+    queryset = Quote.objects.filter(isApproved=True, isHided=False).order_by('id')
     template_name = 'bor/quotes_all_list.html'
     paginate_by = 2
 
 
 class QuotesHideBadListView(QuotesBaseListView):
-    queryset = Quote.objects.filter(rating__gte=0).order_by('id')
+    queryset = Quote.objects.filter(isApproved=True, isHided=False, rating__gte=0).order_by('id')
     template_name = 'bor/quotes_hide_bad_list.html'
 
 
 class QuotesRandomListView(QuotesBaseListView):
-    queryset = Quote.objects.order_by('?')[:5]
+    queryset = Quote.objects.filter(isApproved=True, isHided=False).order_by('?')[:2]
     template_name = 'bor/quotes_random_list.html'
 
 
 class QuotesNewListView(QuotesBaseListView):
-    queryset = Quote.objects.filter(date__range=
-        (datetime.combine(datetime.today(), datetime.min.time()),
-         datetime.combine(datetime.today(), datetime.max.time()))
-                                    ).order_by('id')
+    queryset = Quote.objects.filter(isApproved=True, isHided=False, date__range=(
+        datetime.combine(datetime.today(), datetime.min.time()),
+        datetime.combine(datetime.today(), datetime.max.time()))
+                                   ).order_by('id')
     template_name = 'bor/quotes_new_list.html'
 
 
 class QuotesByRatingListView(QuotesAllListView):
-    queryset = Quote.objects.order_by('-rating')
+    queryset = Quote.objects.filter(isApproved=True, isHided=False).order_by('-rating')
+
+
+class QuotesAbyssListView(QuotesBaseListView):
+    queryset = Quote.objects.filter(isApproved=False, isHided=False).order_by('?')[:2]
+    template_name = 'bor/quotes_abyss_list.html'
 
 
 class CommentDetailView(generic.DetailView):
