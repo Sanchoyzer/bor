@@ -15,9 +15,10 @@ def index(request):
         request,
         'bor/index.html',
         context = {
-            'count_quotes_all': Quote.objects.all().count(),
-            'count_quotes_new': Quote.objects.filter(date__range=(today_min, today_max)).count(),
-            'count_quotes_hide_bad': Quote.objects.filter(rating__gte=0).count()
+            'count_quotes_all': Quote.objects.filter(isApproved=True, isHided=False).count(),
+            'count_quotes_new': Quote.objects.filter(isApproved=True, isHided=False, date__range=(today_min, today_max)).count(),
+            'count_quotes_hide_bad': Quote.objects.filter(isApproved=True, isHided=False, rating__gte=0).count(),
+            'count_quotes_abyss': Quote.objects.filter(isApproved=False, isHided=False).count()
         },
     )
 
@@ -86,6 +87,11 @@ class QuotesByRatingListView(QuotesAllListView):
 class QuotesAbyssListView(QuotesBaseListView):
     queryset = Quote.objects.filter(isApproved=False, isHided=False).order_by('?')[:2]
     template_name = 'bor/quotes_abyss_list.html'
+
+
+class QuotesAbyssTopListView(QuotesBaseListView):
+    queryset = Quote.objects.filter(isApproved=False, isHided=False).order_by('rating')[:2]
+    template_name = 'bor/quotes_abyss_top_list.html'
 
 
 class CommentDetailView(generic.DetailView):
