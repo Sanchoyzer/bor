@@ -62,7 +62,7 @@ class QuotesAllListView(QuotesBaseListView):
     paginate_by = 2
 
 
-class QuotesHideBadListView(QuotesBaseListView):
+class QuotesHideBadListView(QuotesAllListView):
     queryset = Quote.objects.filter(isApproved=True, isHided=False, rating__gte=0).order_by('id')
     template_name = 'bor/quotes_hide_bad_list.html'
 
