@@ -79,6 +79,10 @@ class QuotesNewListView(QuotesBaseListView):
     template_name = 'bor/quotes_new_list.html'
 
 
+class QuotesByRatingListView(QuotesAllListView):
+    queryset = Quote.objects.order_by('-rating')
+
+
 class CommentDetailView(generic.DetailView):
     model = Comment
     context_object_name = 'comment'

@@ -16,7 +16,7 @@
       <strong>Цитаты:</strong>
       <a href="{% url 'quotes-new' %}" class="btn btn-link btn-sm" role="button">Новые <span class="badge">{{ count_quotes_new }}</span></a>
       <a href="{% url 'quotes-random' %}" class="btn btn-link btn-sm" role="button">Случайные</a>
-      <a href="#" class="btn btn-link btn-sm" role="button">По рейтингу</a>
+      <a href="{% url 'quotes-by-rating' %}" class="btn btn-link btn-sm" role="button">По рейтингу</a>
       <a href="#" class="btn btn-link btn-sm" role="button">Бездна <span class="badge">0</span></a>
       <a href="#" class="btn btn-link btn-sm" role="button">Топ бездны</a>
       <a href="#" class="btn btn-link btn-sm" role="button">Добавить</a>
