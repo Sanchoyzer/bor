@@ -50,24 +50,33 @@ class QuoteDetailView(generic.DetailView):
     template_name = 'bor/quote_detail.html'
 
 
-class QuotesAllListView(generic.ListView):
+class QuotesBaseListView(generic.ListView):
     model = Quote
-    queryset = Quote.objects.order_by('id')
     context_object_name = 'quotes'
+
+
+class QuotesAllListView(QuotesBaseListView):
+    queryset = Quote.objects.order_by('id')
     template_name = 'bor/quotes_all_list.html'
     paginate_by = 2
 
 
-class QuotesHideBadListView(QuotesAllListView):
+class QuotesHideBadListView(QuotesBaseListView):
     queryset = Quote.objects.filter(rating__gte=0).order_by('id')
     template_name = 'bor/quotes_hide_bad_list.html'
 
 
-class QuotesRandomListView(generic.ListView):
-    model = Quote
+class QuotesRandomListView(QuotesBaseListView):
     queryset = Quote.objects.order_by('?')[:5]
-    context_object_name = 'quotes'
     template_name = 'bor/quotes_random_list.html'
+
+
+class QuotesNewListView(QuotesBaseListView):
+    queryset = Quote.objects.filter(date__range=
+        (datetime.combine(datetime.today(), datetime.min.time()),
+         datetime.combine(datetime.today(), datetime.max.time()))
+                                    ).order_by('id')
+    template_name = 'bor/quotes_new_list.html'
 
 
 class CommentDetailView(generic.DetailView):

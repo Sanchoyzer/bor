@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^quotes/$', views.QuotesAllListView.as_view(), name='quotes-all'),
     url(r'^hidebad/$', views.QuotesHideBadListView.as_view(), name='quotes-hide-bad'),
     url(r'^random/$', views.QuotesRandomListView.as_view(), name='quotes-random'),
+    url(r'^new/$', views.QuotesNewListView.as_view(), name='quotes-new'),
 
     url(r'^quote/(?P<pk>\d+)$', views.QuoteDetailView.as_view(), name='quote-detail'),
     url(r'^quote/(?P<pk>\d+)/rulez/$', views.quote_rulez, name='quote-rulez'),

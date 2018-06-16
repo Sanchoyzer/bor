@@ -8,13 +8,13 @@
 {% block content %}
 <div class="container">
   <div class="page-header">
-    <h3>Цитатник</h3>
+    <h3><a href="{% url 'bor-index' %}">Цитатник</a></h3>
   </div>
 
   <div class="row">
     <p>
       <strong>Цитаты:</strong>
-      <a href="{% url 'bor-index' %}" class="btn btn-link btn-sm" role="button">Новые <span class="badge">{{ count_quotes_new }}</span></a>
+      <a href="{% url 'quotes-new' %}" class="btn btn-link btn-sm" role="button">Новые <span class="badge">{{ count_quotes_new }}</span></a>
       <a href="{% url 'quotes-random' %}" class="btn btn-link btn-sm" role="button">Случайные</a>
       <a href="#" class="btn btn-link btn-sm" role="button">По рейтингу</a>
       <a href="#" class="btn btn-link btn-sm" role="button">Бездна <span class="badge">0</span></a>
