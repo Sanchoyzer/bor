@@ -25,6 +25,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    url(r'^bor/', include('bor.urls')),
     url(r'^spaceContact/', include('spaceContact.urls')),
     url(r'^admin/', admin.site.urls),
     # url(r'^$', RedirectView.as_view(url='/spaceContact/', permanent=True)),    
