@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.db.models import Q
 
 from datetime import datetime
 
@@ -92,6 +93,18 @@ class QuotesAbyssListView(QuotesBaseListView):
 class QuotesAbyssTopListView(QuotesBaseListView):
     queryset = Quote.objects.filter(isApproved=False, isHided=False).order_by('rating')[:2]
     template_name = 'bor/quotes_abyss_top_list.html'
+
+
+class QuotesSearchListView(QuotesAllListView):
+    def get_queryset(self):
+        text = self.request.GET.get('text', '')
+        filter_set = Quote.objects.filter(isApproved=True, isHided=False).order_by('id')
+        if text == '':
+            return filter_set
+        if text.isdigit():
+            return filter_set.filter(Q(text__icontains = text) | Q(id = int(text)))
+        else:
+            return filter_set.filter(Q(text__icontains = text))
 
 
 class CommentDetailView(generic.DetailView):

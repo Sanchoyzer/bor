@@ -14,10 +14,11 @@ urlpatterns = [
     url(r'^abyss/$',    views.QuotesAbyssListView.as_view(),    name='quotes-abyss'),
     url(r'^abysstop/$', views.QuotesAbyssTopListView.as_view(), name='quotes-abysstop'),
 
-    url(r'^quote/(?P<pk>\d+)$',        views.QuoteDetailView.as_view(), name='quote-detail'),
-    url(r'^quote/(?P<pk>\d+)/rulez/$', views.quote_rulez,               name='quote-rulez'),
-    url(r'^quote/(?P<pk>\d+)/sux/$',   views.quote_sux,                 name='quote-sux'),
-    url(r'^quote/(?P<pk>\d+)/bayan/$', views.quote_bayan,               name='quote-bayan'),
+    url(r'^quote/(?P<pk>\d+)$',        views.QuoteDetailView.as_view(),      name='quote-detail'),
+    url(r'^quote/(?P<pk>\d+)/rulez/$', views.quote_rulez,                    name='quote-rulez'),
+    url(r'^quote/(?P<pk>\d+)/sux/$',   views.quote_sux,                      name='quote-sux'),
+    url(r'^quote/(?P<pk>\d+)/bayan/$', views.quote_bayan,                    name='quote-bayan'),
+    url(r'^quote/search$',             views.QuotesSearchListView.as_view(), name='quote-search'),
 
     url(r'^comment/(?P<pk>\d+)$', views.CommentDetailView.as_view(), name='comment-detail'),
 ]
